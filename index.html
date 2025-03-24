@@ -31,14 +31,22 @@
   <div id="counter">fuck you'd 0 times</div>
 
   <script>
-    let count = 0;
     const button = document.getElementById('fuckuBtn');
     const counter = document.getElementById('counter');
-
-    button.addEventListener('click', () => {
-      count++;
-      counter.textContent = `People have said fuck you ---> ${count} ${count === 1 ? 'time' : 'times'}`;
+  
+    async function updateCounter() {
+      const res = await fetch('/api/counter');
+      const data = await res.json();
+      counter.textContent = `Pressed ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
+    }
+  
+    button.addEventListener('click', async () => {
+      const res = await fetch('/api/counter', { method: 'POST' });
+      const data = await res.json();
+      counter.textContent = `Pressed ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
     });
+  
+    updateCounter();
   </script>
 </body>
 </html>
