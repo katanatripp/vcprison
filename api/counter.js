@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-    const token = process.env.GITHUB_TOKEN; // Your GitHub PAT
+    const token = process.env.GITHUB_TOKEN;
     const owner = 'katanatripp';
     const repo = 'vcprison';
     const path = 'data/counter.json';
@@ -37,5 +37,5 @@ export default async function handler(req, res) {
       return res.status(200).json({ count: content.count });
     }
   
-    res.status(405).end(); // Method Not Allowed
+    res.status(405).end();
   }
