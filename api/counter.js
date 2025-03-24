@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
     const token = process.env.GITHUB_TOKEN; // Your GitHub PAT
-    const owner = 'your-username';
-    const repo = 'your-repo-name';
+    const owner = 'katanatripp';
+    const repo = 'vcprison';
     const path = 'data/counter.json';
   
     const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
