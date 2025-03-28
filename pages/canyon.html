@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Canyon Page</title>
+  <style>
+    /* Basic CSS */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    
+    h1 {
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    /* Counter display */
+    p {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Canyon smells</h1>
+
+    <!-- This is how you add an image (point to your own image file or URL) -->
+    <!-- <img src="relative/path/to/your/image.jpg" alt="Description of image" /> -->
+
+    <button onclick="incrementCounter()">Click me!</button>
+    <p id="countDisplay">Count: 0</p>
+  </div>
+
+  <!-- Simple JavaScript to handle the counter -->
+  <script>
+    let count = 0;
+
+    function incrementCounter() {
+      count++;
+      document.getElementById('countDisplay').textContent = 'Count: ' + count;
+    }
+  </script>
+</body>
+</html>
