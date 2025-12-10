@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ry &lt; tripp</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    #counter {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>ry sucks! say Fuck u to ry below</h1>
+
+  <button id="fuckuBtn">Fuck you</button>
+  <div id="counter">fuck you'd 0 times</div>
+
+  <script>
+    const button = document.getElementById('fuckuBtn');
+    const counter = document.getElementById('counter');
+  
+    async function updateCounter() {
+      const res = await fetch('/api/counter');
+      const data = await res.json();
+      counter.textContent = `fuck you'd ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
+    }
+  
+    button.addEventListener('click', async () => {
+      const res = await fetch('/api/counter', { method: 'POST' });
+      const data = await res.json();
+      counter.textContent = `Pressed ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
+    });
+  
+    updateCounter();
+  </script>
+</body>
+</html>
