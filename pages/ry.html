@@ -25,28 +25,57 @@
   </style>
 </head>
 <body>
-  <h1>ry sucks! say Fuck u to ry below</h1>
+  <h1>ry sucks! say F u to ry below</h1>
 
-  <button id="fuckuBtn">Fuck you</button>
-  <div id="counter">fuck you'd 0 times</div>
+  <button id="fuckuBtn2">F u</button>
+  <div id="counter2">Loading...</div>
 
   <script>
-    const button = document.getElementById('fuckuBtn');
-    const counter = document.getElementById('counter');
-  
-    async function updateCounter() {
-      const res = await fetch('/api/counter');
-      const data = await res.json();
-      counter.textContent = `fuck you'd ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
+    const button = document.getElementById('fuckuBtn2');
+    const counter = document.getElementById('counter2');
+
+    function renderCount(count) {
+      counter.textContent = `f u'd ${count} ${count === 1 ? 'time' : 'times'}`;
     }
-  
-    button.addEventListener('click', async () => {
-      const res = await fetch('/api/counter', { method: 'POST' });
+
+    async function fetchCount() {
+      const res = await fetch('/api/counter-ry');
+      if (!res.ok) {
+        throw new Error('Failed to fetch count');
+      }
       const data = await res.json();
-      counter.textContent = `Pressed ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
+      return typeof data.count === 'number' ? data.count : 0;
+    }
+
+    async function updateCounterFromServer() {
+      try {
+        const count = await fetchCount();
+        renderCount(count);
+      } catch (err) {
+        console.error(err);
+        counter.textContent = 'Error loading count :(';
+      }
+    }
+
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      try {
+        const res = await fetch('/api/counter-ry', { method: 'POST' });
+        if (!res.ok) {
+          throw new Error('Failed to update count');
+        }
+        const data = await res.json();
+        const count = typeof data.count === 'number' ? data.count : 0;
+        renderCount(count);
+      } catch (err) {
+        console.error(err);
+        counter.textContent = 'Error updating count :(';
+      } finally {
+        button.disabled = false;
+      }
     });
-  
-    updateCounter();
+
+    updateCounterFromServer();
   </script>
 </body>
 </html>
