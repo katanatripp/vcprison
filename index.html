@@ -37,13 +37,13 @@
     async function updateCounter() {
       const res = await fetch('/api/counter-ry');
       const data = await res.json();
-      counter.textContent = `f u'd ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
+      counter.textContent = `f u'd ${data.count2} ${data.count2 === 1 ? 'time' : 'times'}`;
     }
   
     button.addEventListener('click', async () => {
       const res = await fetch('/api/counter-ry', { method: 'POST' });
       const data = await res.json();
-      counter.textContent = `Pressed ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
+      counter.textContent = `Pressed ${data.count2} ${data.count2 === 1 ? 'time' : 'times'}`;
     });
   
     updateCounter();
