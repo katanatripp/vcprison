@@ -4,128 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tripp is king</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-1: #1b0b2e;
-      --bg-2: #3a0d4d;
-      --card: rgba(255, 255, 255, 0.06);
-      --card-border: rgba(255, 255, 255, 0.12);
-      --text: #f4eaff;
-      --muted: #c9b6e0;
-      --accent-1: #ff5b6a;
-      --accent-2: #ff9a3c;
-      --shadow: rgba(0, 0, 0, 0.4);
-    }
-
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
+      font-family: "Courier New", Courier, monospace;
+      color: #2a2a2a;
+      background: #b9b5a8;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 60px);
       min-height: 100vh;
+    }
+
+    .banner {
+      background: #1a1a1a;
+      color: #d8d2c2;
+      padding: 18px 10px;
+      text-align: center;
+      border-top: 6px solid #000;
+      border-bottom: 6px solid #000;
+      background-image:
+        repeating-linear-gradient(90deg, #444 0 3px, transparent 3px 40px);
+    }
+
+    .banner span {
+      display: inline-block;
+      background: #1a1a1a;
+      padding: 4px 22px;
+      font-size: 1.6rem;
+      font-weight: bold;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    main {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Baloo 2', system-ui, sans-serif;
-      color: var(--text);
-      background: radial-gradient(circle at 30% 20%, var(--bg-2), var(--bg-1) 60%);
-      background-attachment: fixed;
-      padding: 24px;
-      text-align: center;
+      padding: 60px 20px;
     }
 
     .card {
       width: 100%;
       max-width: 420px;
-      padding: 40px 32px;
-      border-radius: 24px;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 20px 60px var(--shadow);
+      padding: 36px 30px;
+      background: #ded9c9;
+      border: 2px solid #2a2a2a;
+      box-shadow: 6px 6px 0 #2a2a2a;
+      text-align: center;
     }
 
     h1 {
-      margin: 0 0 28px;
-      font-size: 1.5rem;
-      font-weight: 700;
-      line-height: 1.35;
+      margin: 0 0 26px;
+      font-size: 1.15rem;
+      font-weight: bold;
+      line-height: 1.5;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     button {
       font-family: inherit;
-      font-weight: 800;
-      font-size: 1.4rem;
-      letter-spacing: 0.02em;
-      color: #2a0a12;
-      padding: 16px 48px;
-      border: none;
-      border-radius: 999px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: #2a2a2a;
+      padding: 12px 40px;
+      border: 2px outset #c9c4b4;
+      border-radius: 0;
+      background: #c9c4b4;
       cursor: pointer;
-      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-      box-shadow: 0 10px 24px rgba(255, 91, 106, 0.35);
-      transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
     }
 
     button:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 14px 30px rgba(255, 91, 106, 0.45);
+      background: #cfcabb;
     }
 
     button:active {
-      transform: translateY(1px) scale(0.97);
-      box-shadow: 0 6px 14px rgba(255, 91, 106, 0.35);
+      border-style: inset;
     }
 
     button:disabled {
       opacity: 0.6;
       cursor: default;
-      transform: none;
-    }
-
-    button.shake {
-      animation: shake 0.32s ease;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0) scale(1); }
-      25% { transform: translateX(-6px) rotate(-2deg) scale(1.02); }
-      75% { transform: translateX(6px) rotate(2deg) scale(1.02); }
     }
 
     #counter {
-      margin-top: 22px;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--muted);
-      transition: transform 0.15s ease;
-    }
-
-    #counter.pop {
-      transform: scale(1.12);
-      color: var(--text);
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: #4a4a4a;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>say f u to the web master below! 😤</h1>
+  <div class="banner"><span>Coming Soon</span></div>
 
-    <button id="fuckuBtn">F u</button>
-    <div id="counter">f u'd 0 times</div>
-  </div>
+  <main>
+    <div class="card">
+      <h1>say f u to the web master below!</h1>
+
+      <button id="fuckuBtn">F u</button>
+      <div id="counter">f u'd 0 times</div>
+    </div>
+  </main>
 
   <script>
     const button = document.getElementById('fuckuBtn');
     const counter = document.getElementById('counter');
-
-    function pop() {
-      counter.classList.remove('pop');
-      void counter.offsetWidth; // restart animation
-      counter.classList.add('pop');
-    }
 
     async function updateCounter() {
       try {
@@ -141,14 +127,11 @@
 
     button.addEventListener('click', async () => {
       button.disabled = true;
-      button.classList.add('shake');
-      setTimeout(() => button.classList.remove('shake'), 320);
       try {
         const res = await fetch('/api/counter-ry', { method: 'POST' });
         const data = await res.json();
         if (!res.ok || typeof data.count !== 'number') throw new Error(data.error || 'bad response');
         counter.textContent = `Pressed ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
-        pop();
       } catch (err) {
         counter.textContent = 'Error updating count :(';
         console.error(err);
