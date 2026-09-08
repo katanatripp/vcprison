@@ -35,15 +35,30 @@
     const counter = document.getElementById('counter');
   
     async function updateCounter() {
-      const res = await fetch('/api/counter-ry');
-      const data = await res.json();
-      counter.textContent = `f u'd ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
+      try {
+        const res = await fetch('/api/counter-ry');
+        const data = await res.json();
+        if (!res.ok || typeof data.count !== 'number') throw new Error(data.error || 'bad response');
+        counter.textContent = `f u'd ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
+      } catch (err) {
+        counter.textContent = 'Error loading count :(';
+        console.error(err);
+      }
     }
 
     button.addEventListener('click', async () => {
-      const res = await fetch('/api/counter-ry', { method: 'POST' });
-      const data = await res.json();
-      counter.textContent = `Pressed ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
+      button.disabled = true;
+      try {
+        const res = await fetch('/api/counter-ry', { method: 'POST' });
+        const data = await res.json();
+        if (!res.ok || typeof data.count !== 'number') throw new Error(data.error || 'bad response');
+        counter.textContent = `Pressed ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
+      } catch (err) {
+        counter.textContent = 'Error updating count :(';
+        console.error(err);
+      } finally {
+        button.disabled = false;
+      }
     });
   
     updateCounter();
