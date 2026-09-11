@@ -104,6 +104,18 @@
       color: #4a4a4a;
     }
 
+    .discord-link {
+      display: block;
+      margin-top: 14px;
+      font-size: 0.9rem;
+      color: #2a2a2a;
+      text-decoration: underline;
+    }
+
+    .discord-link[hidden] {
+      display: none;
+    }
+
     .overlay {
       position: fixed;
       inset: 0;
@@ -200,12 +212,14 @@
 
       <button id="fuckuBtn">F u</button>
       <div id="counter">f u'd 0 times</div>
+      <a id="discordLink" class="discord-link" href="/discord" target="_blank" rel="noopener" hidden>click to join the discord</a>
     </div>
   </main>
 
   <script>
     const button = document.getElementById('fuckuBtn');
     const counter = document.getElementById('counter');
+    const discordLink = document.getElementById('discordLink');
 
     async function updateCounter() {
       try {
@@ -226,6 +240,7 @@
         const data = await res.json();
         if (!res.ok || typeof data.count !== 'number') throw new Error(data.error || 'bad response');
         counter.textContent = `Pressed ${data.count} ${data.count === 1 ? 'time' : 'times'}`;
+        discordLink.hidden = false;
       } catch (err) {
         counter.textContent = 'Error updating count :(';
         console.error(err);
